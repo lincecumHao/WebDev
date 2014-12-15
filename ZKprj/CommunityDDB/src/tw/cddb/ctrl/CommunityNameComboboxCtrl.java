@@ -40,6 +40,7 @@ public class CommunityNameComboboxCtrl extends SelectorComposer<Component> {
 		ListModelList<CommunityBoundary> todoListModel = new ListModelList<CommunityBoundary>(list);
 		communityName_cbbox.setModel(todoListModel);
 		communityName_cbbox.setItemRenderer(new CommunityNameComboboxRender());
+		communityName_cbbox.addEventListener("onSelect", new CommunityNameComboboxOnSelectEvent());
 	}
 
 	// test case

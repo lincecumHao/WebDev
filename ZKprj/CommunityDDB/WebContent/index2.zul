@@ -2,10 +2,11 @@
 <zk>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp" />
 	<script src="/res/script/initMap.js" />
-	<window mode="overlapped" position="left,top" width="550px">
-		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl">
+	<script src="/res/script/Utils.js" />
+	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">
+		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl" autocomplete="true" autodrop="true">
 		</combobox>
-		<tree width="550px" multiple="true" checkmark="true">
+		<tree width="500px" multiple="true" checkmark="true" visible="false">
 			<treecols>
 				<treecol label="詳細資訊" />
 			</treecols>
