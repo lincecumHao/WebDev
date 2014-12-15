@@ -9,7 +9,7 @@
 		<west size="30%">
 			<vbox>
 				<label>請輸入社區名稱:</label>
-				<combobox>
+				<combobox id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl">
 					<comboitem>社區1</comboitem>
 					<comboitem>社區2</comboitem>
 					<comboitem>社區3</comboitem>

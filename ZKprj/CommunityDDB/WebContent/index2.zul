@@ -3,10 +3,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp" />
 	<script src="/res/script/initMap.js" />
 	<window mode="overlapped" position="left,top" width="550px">
-		<combobox width="500px">
-			<comboitem>社區1</comboitem>
-			<comboitem>社區1</comboitem>
-			<comboitem>社區1</comboitem>
+		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl">
 		</combobox>
 		<tree width="550px" multiple="true" checkmark="true">
 			<treecols>
