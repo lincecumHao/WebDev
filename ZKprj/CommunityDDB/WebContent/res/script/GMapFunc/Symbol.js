@@ -1,8 +1,13 @@
 function Symbol() {
-	
-	this.symbol;
 
 	this.id;
-	
-	this.initialize();
+
+	this.getId = function() {
+		return this.id;
+	};
+
+	this.initialize = function() {};
+
+	this.symbol = this.initialize();
+
 }
