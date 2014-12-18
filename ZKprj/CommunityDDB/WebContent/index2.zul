@@ -10,29 +10,10 @@
 	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">
 		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl" autocomplete="true" autodrop="true">
 		</combobox>
-		<tree width="500px" multiple="true" checkmark="true" visible="false">
+		<tree width="500px" id="communityInfo_Tree" visible="false">
 			<treecols>
 				<treecol label="詳細資訊" />
 			</treecols>
-			<treechildren>
-				<treeitem>
-					<treerow>
-						<treecell label="社區1" />
-					</treerow>
-					<treechildren>
-						<treeitem>
-							<treerow>
-								<treecell label="邊界" />
-							</treerow>
-						</treeitem>
-						<treeitem>
-							<treerow>
-								<treecell label="排水" />
-							</treerow>
-						</treeitem>
-					</treechildren>
-				</treeitem>
-			</treechildren>
 		</tree>
 	</window>
 	<borderlayout>

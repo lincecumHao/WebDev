@@ -1,6 +1,8 @@
 package tw.cddb.dao.model;
 
 import tw.cddb.dao.method.CommunityBoundaryDAO;
+import tw.cddb.dao.method.CommunityBuildingDAO;
+import tw.cddb.dao.method.CommunityDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 
 public abstract class DAOFactory {
@@ -12,6 +14,8 @@ public abstract class DAOFactory {
 	// created. The concrete factories will have to
 	// implement these methods.
 	public abstract CommunityBoundaryDAO getCommunityBoundDAO();
+	public abstract CommunityBuildingDAO getCommunityBuildingDAO();
+	public abstract CommunityDAO getCommunityDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 
