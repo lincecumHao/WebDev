@@ -25,10 +25,10 @@ public class Building {
 	private String bidFull;
 	private String geom;
 
-	public Building(int gid, int id, String zone, String bid,
-			double twd97_x, double twd97_y, String pasaNum, String buildId,
-			String address, int floorOnTheGround, int floorUnderGround,
-			String typeBuild, String typeRoad, String pavementFeature,
+	public Building(int gid, int id, String zone, String bid, double twd97_x,
+			double twd97_y, String pasaNum, String buildId, String address,
+			int floorOnTheGround, int floorUnderGround, String typeBuild,
+			String typeRoad, String pavementFeature,
 			String buildingFacadesFeature, String buildingDandwFeature,
 			String beamsCrack, String differentalSettlement,
 			String featureLevel, String note, String bidFull, String geom) {

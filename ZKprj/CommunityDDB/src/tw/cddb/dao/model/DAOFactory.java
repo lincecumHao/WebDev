@@ -3,6 +3,9 @@ package tw.cddb.dao.model;
 import tw.cddb.dao.method.CommunityBoundaryDAO;
 import tw.cddb.dao.method.CommunityBuildingDAO;
 import tw.cddb.dao.method.CommunityDAO;
+import tw.cddb.dao.method.CommunityDrainDAO;
+import tw.cddb.dao.method.CommunityManualSlopeDAO;
+import tw.cddb.dao.method.CommunityNaturalSlopeDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 
 public abstract class DAOFactory {
@@ -15,6 +18,9 @@ public abstract class DAOFactory {
 	// implement these methods.
 	public abstract CommunityBoundaryDAO getCommunityBoundDAO();
 	public abstract CommunityBuildingDAO getCommunityBuildingDAO();
+	public abstract CommunityDrainDAO getCommunityDrainDAO();
+	public abstract CommunityManualSlopeDAO getCommunityManualSlopeDAO();
+	public abstract CommunityNaturalSlopeDAO getCommunityNaturalSlopeDAO();
 	public abstract CommunityDAO getCommunityDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {

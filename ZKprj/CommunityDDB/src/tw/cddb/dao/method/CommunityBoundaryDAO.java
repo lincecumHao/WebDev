@@ -2,8 +2,9 @@ package tw.cddb.dao.method;
 
 import java.util.Collection;
 
-import tw.cddb.dao.bean.CommunityBoundary;
+import tw.cddb.dao.bean.Boundary;
 
 public interface CommunityBoundaryDAO {
-	public Collection<CommunityBoundary> getAllCommunityBoudnary();
+	public Collection<Boundary> getAllCommunityBoudnary();
+	public Boundary getCommunityBoudnaryById(String id);
 }

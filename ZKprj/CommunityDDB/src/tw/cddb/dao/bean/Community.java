@@ -6,7 +6,26 @@ public class Community {
 	private int id;
 	private String name;
 	private CommuntiyBuildings communtiyBuildings;
-	private CommunityBoundary communityBoundary;
+	private CommuntiyDrains communtiyDrains;
+	private CommuntiyManualSlope communtiyManualSlope;
+	private CommuntiyNaturalSlope communtiyNaturalSlope;
+	public CommuntiyManualSlope getCommuntiyManualSlope() {
+		return communtiyManualSlope;
+	}
+
+	public void setCommuntiyManualSlope(CommuntiyManualSlope communtiyManualSlope) {
+		this.communtiyManualSlope = communtiyManualSlope;
+	}
+
+	public CommuntiyNaturalSlope getCommuntiyNaturalSlope() {
+		return communtiyNaturalSlope;
+	}
+
+	public void setCommuntiyNaturalSlope(CommuntiyNaturalSlope communtiyNaturalSlope) {
+		this.communtiyNaturalSlope = communtiyNaturalSlope;
+	}
+
+	private Boundary communityBoundary;
 	
 	public CommuntiyBuildings getCommuntiyBuildings() {
 		return communtiyBuildings;
@@ -16,12 +35,20 @@ public class Community {
 		this.communtiyBuildings = communtiyBuildings;
 	}
 
-	public CommunityBoundary getCommunityBoundary() {
+	public Boundary getCommunityBoundary() {
 		return communityBoundary;
 	}
 
-	public void setCommunityBoundary(CommunityBoundary communityBoundary) {
+	public void setCommunityBoundary(Boundary communityBoundary) {
 		this.communityBoundary = communityBoundary;
+	}
+
+	public CommuntiyDrains getCommuntiyDrains() {
+		return communtiyDrains;
+	}
+
+	public void setCommuntiyDrains(CommuntiyDrains communtiyDrains) {
+		this.communtiyDrains = communtiyDrains;
 	}
 
 	public String getId() {

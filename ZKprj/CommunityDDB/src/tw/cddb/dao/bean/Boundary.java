@@ -1,13 +1,13 @@
 package tw.cddb.dao.bean;
 
-public class CommunityBoundary {
+public class Boundary {
 
 	private int gid;
 	private int id;
 	private String name;
 	private String wktGeom;
 
-	public CommunityBoundary(int gid, int id, String name, String wktGeom) {
+	public Boundary(int gid, int id, String name, String wktGeom) {
 		super();
 		this.gid = gid;
 		this.id = id;

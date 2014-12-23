@@ -9,7 +9,7 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 
 import tw.cddb.dao.bean.Community;
-import tw.cddb.dao.bean.CommunityBoundary;
+import tw.cddb.dao.bean.Boundary;
 import tw.cddb.dao.method.CommunityBoundaryDAO;
 import tw.cddb.dao.method.CommunityDAO;
 import tw.cddb.dao.model.DAOFactory;
@@ -74,7 +74,7 @@ public class CommunityNameComboboxCtrl extends SelectorComposer<Component> {
 		// Create a DAO
 		CommunityBoundaryDAO cbDAO = postgreDAO.getCommunityBoundDAO();
 
-		Collection<CommunityBoundary> list = cbDAO.getAllCommunityBoudnary();
+		Collection<Boundary> list = cbDAO.getAllCommunityBoudnary();
 
 		System.out.println(list.size());
 

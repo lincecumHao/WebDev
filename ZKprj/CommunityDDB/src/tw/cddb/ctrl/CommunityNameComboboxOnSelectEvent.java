@@ -14,16 +14,13 @@ import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.Tree;
 
-import foo.Pojo;
-import foo.TreeModelRender;
 import tw.cddb.dao.bean.Building;
 import tw.cddb.dao.bean.Community;
-import tw.cddb.dao.bean.CommunityBoundary;
 import tw.cddb.dao.bean.CommunityTreeNode;
 import tw.cddb.dao.bean.CommuntiyBuildings;
 import tw.cddb.dao.method.CommunityBuildingDAO;
 import tw.cddb.dao.model.DAOFactory;
-import tw.cddb.view.ClientsJsFunc;
+import foo.TreeModelRender;
 
 public class CommunityNameComboboxOnSelectEvent implements EventListener<Event> {
 
@@ -38,7 +35,9 @@ public class CommunityNameComboboxOnSelectEvent implements EventListener<Event> 
 //				cb.getWktGeom());
 //		ClientsJsFunc.panTo(cb.getId());
 
-		getFullCommunityInfo(community);
+		new CommunityInfoSet(community);
+		new CommunityInfoTreeCtrl(community);
+//		getFullCommunityInfo(community);
 	}
 
 	
@@ -73,7 +72,7 @@ public class CommunityNameComboboxOnSelectEvent implements EventListener<Event> 
 		}
 		
 		List<DefaultTreeNode<CommunityTreeNode<?>>> buildTreeNodeParent = new ArrayList<>();
-		CommunityTreeNode<Building> commBuildTreeNode = new CommunityTreeNode<>("建物評分", (ArrayList<Building>) community.getCommuntiyBuildings().getBuilds());
+		CommunityTreeNode<?> commBuildTreeNode = new CommunityTreeNode<>("建物評分", (ArrayList<Building>) community.getCommuntiyBuildings().getBuilds());
 		
 		buildTreeNodeParent.add(new DefaultTreeNode<CommunityTreeNode<?>>(commBuildTreeNode, buildTreeNode));
 		
@@ -94,18 +93,6 @@ public class CommunityNameComboboxOnSelectEvent implements EventListener<Event> 
 		tree.setCheckmark(true);
 		tree.setVisible(true);
 		
-//		List<DefaultTreeNode<FileInfo>> inner3 = new ArrayList<DefaultTreeNode<FileInfo>>();
-//		inner3.add(new DefaultTreeNode<FileInfo>(new FileInfo("zcommon.jar", "ZK Common Library")));
-//		inner3.add(new DefaultTreeNode<FileInfo>(new FileInfo("zk.jar", "ZK Core Library")));
-//		
-//		List<DefaultTreeNode<FileInfo>> inner2 = new ArrayList<DefaultTreeNode<FileInfo>>();
-//		inner2.add(new DefaultTreeNode<FileInfo>(new FileInfo("/lib", "ZK Libraries"), inner3));
-//		inner2.add(new DefaultTreeNode<FileInfo>(new FileInfo("/src", "Source Code")));
-//		inner2.add(new DefaultTreeNode<FileInfo>(new FileInfo("/xsd", "XSD Files")));
-//		
-//		List<DefaultTreeNode<FileInfo>> inner1 = new ArrayList<DefaultTreeNode<FileInfo>>();
-//		inner1.add(new DefaultTreeNode<FileInfo>(new FileInfo("/doc", "Release and License Notes")));
-//		inner1.add(new DefaultTreeNode<FileInfo>(new FileInfo("/dist", "Distribution"), inner2));
 	}
 
 }
