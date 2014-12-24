@@ -10,7 +10,7 @@
 	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">
 		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl" autocomplete="true" autodrop="true">
 		</combobox>
-		<tree width="500px" id="communityInfo_Tree" visible="false">
+		<tree width="500px" id="communityInfo_Tree" visible="false" checkmark="true" multiple="true">
 			<treecols>
 				<treecol label="詳細資訊" />
 			</treecols>
