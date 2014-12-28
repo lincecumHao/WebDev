@@ -44,11 +44,12 @@ public class TreeSelectEvent implements EventListener<Event> {
 		}
 
 		setOriginSelectItems(tree);
-		
+
 		/**
 		 * TODO 另外拿出去變成 Display ALL Select Item, 然後每次職行
 		 */
 		if (this.newSelectedItems.size() > 0) {
+			Clients.evalJavaScript("removeAll();");
 			for (Treeitem item : this.newSelectedItems) {
 				if (isFactorParent(item)) {
 					return;
@@ -59,16 +60,19 @@ public class TreeSelectEvent implements EventListener<Event> {
 					this.communityId = obj.getId();
 					if (obj instanceof Building) {
 						Building build = (Building) obj;
-//						System.out.println(build.getGeom());
+						Clients.evalJavaScript("SYMBOL.push(new Point("
+								+ build.getId() + ",\"" + build.getGeom()
+								+ "\"));");
+						// System.out.println(build.getGeom());
 					} else if (obj instanceof Drain) {
 						Drain drain = (Drain) obj;
-//						System.out.println(drain.getGeom());
+						// System.out.println(drain.getGeom());
 					} else if (obj instanceof ManualSlope) {
 						ManualSlope ms = (ManualSlope) obj;
-//						System.out.println(ms.getGeom());
+						// System.out.println(ms.getGeom());
 					} else if (obj instanceof NaturalSlope) {
 						NaturalSlope ns = (NaturalSlope) obj;
-//						System.out.println(ns.getGeom());
+						// System.out.println(ns.getGeom());
 					} else if (obj instanceof Boundary) {
 						Boundary bound = (Boundary) obj;
 						Clients.evalJavaScript("SYMBOL.push(new Polygon("
@@ -123,7 +127,6 @@ public class TreeSelectEvent implements EventListener<Event> {
 		if (item.getLabel().indexOf("邊界") > 0) {
 			flag = false;
 		}
-		System.out.println(flag);
 		return flag;
 	}
 

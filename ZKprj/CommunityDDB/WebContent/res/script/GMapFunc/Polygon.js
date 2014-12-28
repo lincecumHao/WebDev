@@ -24,10 +24,10 @@ function Polygon(id, wkt) {
 		if (wkt != null) {
 			var polygon = new google.maps.Polygon({
 				strokeColor : '#FF0000',
-				strokeOpacity : 0.8,
+				strokeOpacity : 1,
 				strokeWeight : 2,
-				fillColor : '#FF0000',
-				fillOpacity : 0.35,
+				fillColor : '#FFFFFF',
+				fillOpacity : 0,
 				map : MAP
 			});
 			this.setPath(polygon);

@@ -15,3 +15,12 @@ function findSymbolById(id){
 	}
 	return null;
 }
+
+function removeAll(){
+	for(var i = 0; i < SYMBOL.length; i++){
+		var symbol = SYMBOL[i];
+		symbol.symbol.setMap(null);
+		delete SYMBOL[i];
+	}
+	SYMBOL = [];
+}
