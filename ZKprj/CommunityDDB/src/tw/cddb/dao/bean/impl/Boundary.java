@@ -1,18 +1,18 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
-public class Boundary {
+import tw.cddb.dao.bean.Factor;
+
+public class Boundary extends Factor{
 
 	private int gid;
-	private int id;
 	private String name;
-	private String wktGeom;
 
 	public Boundary(int gid, int id, String name, String wktGeom) {
 		super();
 		this.gid = gid;
-		this.id = id;
+		setId(id);
 		this.name = name;
-		this.wktGeom = wktGeom;
+		setGeom(wktGeom);
 	}
 
 	public int getGid() {
@@ -23,14 +23,6 @@ public class Boundary {
 		this.gid = gid;
 	}
 
-	public String getId() {
-		return String.valueOf(id);
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -39,11 +31,4 @@ public class Boundary {
 		this.name = name;
 	}
 
-	public String getWktGeom() {
-		return wktGeom;
-	}
-
-	public void setWktGeom(String wktGeom) {
-		this.wktGeom = wktGeom;
-	}
 }

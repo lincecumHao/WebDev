@@ -2,16 +2,16 @@ package tw.cddb.ctrl;
 
 import java.util.Collection;
 
-import tw.cddb.dao.bean.Boundary;
-import tw.cddb.dao.bean.Building;
-import tw.cddb.dao.bean.Community;
-import tw.cddb.dao.bean.CommuntiyBuildings;
-import tw.cddb.dao.bean.CommuntiyDrains;
-import tw.cddb.dao.bean.CommuntiyManualSlope;
-import tw.cddb.dao.bean.CommuntiyNaturalSlope;
-import tw.cddb.dao.bean.Drain;
-import tw.cddb.dao.bean.ManualSlope;
-import tw.cddb.dao.bean.NaturalSlope;
+import tw.cddb.dao.bean.impl.Boundary;
+import tw.cddb.dao.bean.impl.Building;
+import tw.cddb.dao.bean.impl.Community;
+import tw.cddb.dao.bean.impl.CommuntiyBuildings;
+import tw.cddb.dao.bean.impl.CommuntiyDrains;
+import tw.cddb.dao.bean.impl.CommuntiyManualSlope;
+import tw.cddb.dao.bean.impl.CommuntiyNaturalSlope;
+import tw.cddb.dao.bean.impl.Drain;
+import tw.cddb.dao.bean.impl.ManualSlope;
+import tw.cddb.dao.bean.impl.NaturalSlope;
 import tw.cddb.dao.method.CommunityBoundaryDAO;
 import tw.cddb.dao.method.CommunityBuildingDAO;
 import tw.cddb.dao.method.CommunityDrainDAO;

@@ -8,16 +8,18 @@ import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
 
-import tw.cddb.dao.bean.CommunityTreeNode;
+import tw.cddb.dao.bean.impl.CommunityTreeNode;
 
 public class TreeModelRender implements
-		TreeitemRenderer<DefaultTreeNode<CommunityTreeNode<Object>>> {
+		TreeitemRenderer<DefaultTreeNode<CommunityTreeNode>> {
 
 	@Override
 	public void render(Treeitem item,
-			DefaultTreeNode<CommunityTreeNode<Object>> data, int index)
+			DefaultTreeNode<CommunityTreeNode> data, int index)
 			throws Exception {
-		final CommunityTreeNode<Object> ctn = data.getData();
+		final CommunityTreeNode ctn = data.getData();
+		
+		//不要砍 event 要用
 		item.setId(UUID.randomUUID().toString());
 		item.setOpen(true);
 		item.setValue(data);

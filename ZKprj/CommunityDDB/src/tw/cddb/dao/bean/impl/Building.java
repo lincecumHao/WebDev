@@ -1,9 +1,10 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
-public class Building {
+import tw.cddb.dao.bean.Factor;
+
+public class Building extends Factor{
 
 	private int gid;
-	private int id;
 	private String zone;
 	private String bid;
 	private double twd97_x;
@@ -23,8 +24,7 @@ public class Building {
 	private String featureLevel;
 	private String note;
 	private String bidFull;
-	private String geom;
-
+	
 	public Building(int gid, int id, String zone, String bid, double twd97_x,
 			double twd97_y, String pasaNum, String buildId, String address,
 			int floorOnTheGround, int floorUnderGround, String typeBuild,
@@ -34,7 +34,7 @@ public class Building {
 			String featureLevel, String note, String bidFull, String geom) {
 		super();
 		this.gid = gid;
-		this.id = id;
+		setId(id);
 		this.zone = zone;
 		this.bid = bid;
 		this.twd97_x = twd97_x;
@@ -54,7 +54,7 @@ public class Building {
 		this.featureLevel = featureLevel;
 		this.note = note;
 		this.bidFull = bidFull;
-		this.geom = geom;
+		setGeom(geom);
 	}
 
 	public int getGid() {
@@ -63,14 +63,6 @@ public class Building {
 
 	public void setGid(int gid) {
 		this.gid = gid;
-	}
-
-	public String getId() {
-		return String.valueOf(id);
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getZone() {
@@ -223,14 +215,6 @@ public class Building {
 
 	public void setBidFull(String bidFull) {
 		this.bidFull = bidFull;
-	}
-
-	public String getGeom() {
-		return geom;
-	}
-
-	public void setGeom(String geom) {
-		this.geom = geom;
 	}
 
 }

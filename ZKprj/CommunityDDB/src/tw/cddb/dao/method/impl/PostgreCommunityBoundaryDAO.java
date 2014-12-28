@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import tw.cddb.dao.bean.Boundary;
+import tw.cddb.dao.bean.impl.Boundary;
 import tw.cddb.dao.method.CommunityBoundaryDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 

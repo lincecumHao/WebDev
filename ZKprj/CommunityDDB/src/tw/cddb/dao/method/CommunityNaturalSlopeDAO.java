@@ -2,7 +2,7 @@ package tw.cddb.dao.method;
 
 import java.util.ArrayList;
 
-import tw.cddb.dao.bean.NaturalSlope;
+import tw.cddb.dao.bean.impl.NaturalSlope;
 
 public interface CommunityNaturalSlopeDAO {
 

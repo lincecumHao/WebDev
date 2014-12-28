@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import tw.cddb.dao.bean.Drain;
+import tw.cddb.dao.bean.impl.Drain;
 import tw.cddb.dao.method.CommunityDrainDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 

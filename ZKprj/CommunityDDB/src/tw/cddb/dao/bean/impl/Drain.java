@@ -1,9 +1,10 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
-public class Drain {
+import tw.cddb.dao.bean.Factor;
+
+public class Drain extends Factor{
 
 	private int gid;
-	private int id;
 	private String zone;
 	private String did;
 	private double twd97_x;
@@ -19,7 +20,6 @@ public class Drain {
 	private String featureLevel;
 	private String note;
 	private String drIdFull;
-	private String geom;
 
 	public Drain(int gid, int id, String zone, String did, double twd97_x,
 			double twd97_y, String pasaNum, String drId, String drType,
@@ -28,7 +28,7 @@ public class Drain {
 			String featrueLevel, String note, String drIdFull, String geom) {
 		super();
 		this.gid = gid;
-		this.id = id;
+		setId(id);
 		this.zone = zone;
 		this.did = did;
 		this.twd97_x = twd97_x;
@@ -44,7 +44,7 @@ public class Drain {
 		this.featureLevel = featrueLevel;
 		this.note = note;
 		this.drIdFull = drIdFull;
-		this.geom = geom;
+		setGeom(geom);
 	}
 
 	public int getGid() {
@@ -53,14 +53,6 @@ public class Drain {
 
 	public void setGid(int gid) {
 		this.gid = gid;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getZone() {
@@ -181,14 +173,6 @@ public class Drain {
 
 	public void setDrIdFull(String drIdFull) {
 		this.drIdFull = drIdFull;
-	}
-
-	public String getGeom() {
-		return geom;
-	}
-
-	public void setGeom(String geom) {
-		this.geom = geom;
 	}
 
 }

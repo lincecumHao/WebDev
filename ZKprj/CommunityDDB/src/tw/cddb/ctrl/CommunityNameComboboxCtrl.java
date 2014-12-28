@@ -8,8 +8,8 @@ import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModelList;
 
-import tw.cddb.dao.bean.Community;
-import tw.cddb.dao.bean.Boundary;
+import tw.cddb.dao.bean.impl.Boundary;
+import tw.cddb.dao.bean.impl.Community;
 import tw.cddb.dao.method.CommunityBoundaryDAO;
 import tw.cddb.dao.method.CommunityDAO;
 import tw.cddb.dao.model.DAOFactory;

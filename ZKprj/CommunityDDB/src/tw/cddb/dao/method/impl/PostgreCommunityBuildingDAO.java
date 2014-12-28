@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import tw.cddb.dao.bean.Building;
+import tw.cddb.dao.bean.impl.Building;
 import tw.cddb.dao.method.CommunityBuildingDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 

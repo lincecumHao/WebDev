@@ -1,9 +1,10 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
-public class NaturalSlope {
+import tw.cddb.dao.bean.Factor;
+
+public class NaturalSlope extends Factor {
 	
 	private int gid;
-	private int id;
 	private String zone;
 	private String nid;
 	private double twd97_x;
@@ -20,7 +21,6 @@ public class NaturalSlope {
 	private String featureLevel;
 	private String note;
 	private String nsIdFull;
-	private String geom;
 
 	public NaturalSlope(int gid, int id, String zone, String nid,
 			double twd97_x, double twd97_y, String pasaNum, String nsId,
@@ -30,7 +30,7 @@ public class NaturalSlope {
 			String nsIdFull, String geom) {
 		super();
 		this.gid = gid;
-		this.id = id;
+		setId(id);
 		this.zone = zone;
 		this.nid = nid;
 		this.twd97_x = twd97_x;
@@ -47,7 +47,7 @@ public class NaturalSlope {
 		this.featureLevel = featureLevel;
 		this.note = note;
 		this.nsIdFull = nsIdFull;
-		this.geom = geom;
+		setGeom(geom);
 	}
 
 	public int getGid() {
@@ -56,14 +56,6 @@ public class NaturalSlope {
 
 	public void setGid(int gid) {
 		this.gid = gid;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getZone() {
@@ -192,14 +184,6 @@ public class NaturalSlope {
 
 	public void setNsIdFull(String nsIdFull) {
 		this.nsIdFull = nsIdFull;
-	}
-
-	public String getGeom() {
-		return geom;
-	}
-
-	public void setGeom(String geom) {
-		this.geom = geom;
 	}
 
 }

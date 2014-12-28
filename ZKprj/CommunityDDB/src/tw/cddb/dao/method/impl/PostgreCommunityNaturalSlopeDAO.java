@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import tw.cddb.dao.bean.NaturalSlope;
+import tw.cddb.dao.bean.impl.NaturalSlope;
 import tw.cddb.dao.method.CommunityNaturalSlopeDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 

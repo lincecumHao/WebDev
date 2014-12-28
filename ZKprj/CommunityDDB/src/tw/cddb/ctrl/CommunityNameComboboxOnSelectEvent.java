@@ -6,7 +6,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.ListModel;
 
-import tw.cddb.dao.bean.Community;
+import tw.cddb.dao.bean.impl.Community;
 
 public class CommunityNameComboboxOnSelectEvent implements EventListener<Event> {
 

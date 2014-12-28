@@ -9,13 +9,14 @@ import org.zkoss.zul.DefaultTreeModel;
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.Tree;
 
-import tw.cddb.dao.bean.Boundary;
-import tw.cddb.dao.bean.Building;
-import tw.cddb.dao.bean.Community;
-import tw.cddb.dao.bean.CommunityTreeNode;
-import tw.cddb.dao.bean.Drain;
-import tw.cddb.dao.bean.ManualSlope;
-import tw.cddb.dao.bean.NaturalSlope;
+import tw.cddb.dao.bean.ArrayCast;
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.impl.Building;
+import tw.cddb.dao.bean.impl.Community;
+import tw.cddb.dao.bean.impl.CommunityTreeNode;
+import tw.cddb.dao.bean.impl.Drain;
+import tw.cddb.dao.bean.impl.ManualSlope;
+import tw.cddb.dao.bean.impl.NaturalSlope;
 import tw.cddb.view.TreeModelRender;
 
 public class CommunityInfoTreeCtrl {
@@ -39,8 +40,8 @@ public class CommunityInfoTreeCtrl {
 		this.community = community;
 		this.tree = getTree();
 
-		List<DefaultTreeNode<CommunityTreeNode<?>>> factorParentList = new ArrayList<>();
-		factorParentList.add(createFactorParent(this.BOUNDARY));
+		List<DefaultTreeNode<CommunityTreeNode>> factorParentList = new ArrayList<>();
+		factorParentList.add(createFactorParent(this.BOUNDARY, null));
 		factorParentList.add(createFactorParent(this.DRAIN_PARENT,
 				getFactorNode(this.DRAIN)));
 		factorParentList.add(createFactorParent(this.BUILDIND_PARENT,
@@ -50,17 +51,17 @@ public class CommunityInfoTreeCtrl {
 		factorParentList.add(createFactorParent(this.NATURAL_SLOPE_PARENT,
 				getFactorNode(this.NATURAL_SLOPE)));
 
-		CommunityTreeNode<?> firstNode = new CommunityTreeNode<>(
+		CommunityTreeNode firstNode = new CommunityTreeNode(
 				community.getName(), null);
-		DefaultTreeNode<CommunityTreeNode<?>> firstTn = new DefaultTreeNode<>(
+		DefaultTreeNode<CommunityTreeNode> firstTn = new DefaultTreeNode<>(
 				firstNode, factorParentList);
 
-		List<DefaultTreeNode<CommunityTreeNode<?>>> rootList = new ArrayList<>();
+		List<DefaultTreeNode<CommunityTreeNode>> rootList = new ArrayList<>();
 		rootList.add(firstTn);
-		DefaultTreeNode<CommunityTreeNode<?>> rootTreeNode = new DefaultTreeNode<>(
+		DefaultTreeNode<CommunityTreeNode> rootTreeNode = new DefaultTreeNode<>(
 				null, rootList);
 
-		DefaultTreeModel<CommunityTreeNode<?>> model = new DefaultTreeModel<CommunityTreeNode<?>>(
+		DefaultTreeModel<CommunityTreeNode> model = new DefaultTreeModel<CommunityTreeNode>(
 				rootTreeNode);
 
 		tree.setModel(model);
@@ -77,9 +78,9 @@ public class CommunityInfoTreeCtrl {
 			tree.setCheckmark(true);
 		}
 	}
-
-	private List<DefaultTreeNode<CommunityTreeNode<?>>> getFactorNode(int type) {
-		List<DefaultTreeNode<CommunityTreeNode<?>>> treeNode = new ArrayList<>();
+	
+	private List<DefaultTreeNode<CommunityTreeNode>> getFactorNode(int type) {
+		List<DefaultTreeNode<CommunityTreeNode>> treeNode = new ArrayList<>();
 		ArrayList<String> keylist = new ArrayList<>();
 		keylist.add("一");
 		keylist.add("二");
@@ -90,47 +91,47 @@ public class CommunityInfoTreeCtrl {
 					.getFeatureLevel();
 			for (String key : keylist) {
 				if (map.containsKey(key)) {
-					CommunityTreeNode<?> ctnode = new CommunityTreeNode<>(
-							getFeatureLevelString(key), map.get(key));
+					ArrayList<Factor> ary = new ArrayCast<>(map.get(key)).toFactorArray();
+					CommunityTreeNode ctnode = new CommunityTreeNode(getFeatureLevelString(key), ary);
 					treeNode.add(createDefaultTreeNode(ctnode));
 				}
 			}
-			return treeNode;
+			break;
 		case 2:
 			Map<String, ArrayList<Building>> buildMap = community
 					.getCommuntiyBuildings().getFeatureLevel();
 			for (String key : keylist) {
 				if (buildMap.containsKey(key)) {
-					CommunityTreeNode<?> ctnode = new CommunityTreeNode<>(
-							getFeatureLevelString(key), buildMap.get(key));
+					ArrayList<Factor> ary = new ArrayCast<>(buildMap.get(key)).toFactorArray();
+					CommunityTreeNode ctnode = new CommunityTreeNode(getFeatureLevelString(key), ary);
 					treeNode.add(createDefaultTreeNode(ctnode));
 				}
 			}
-			return treeNode;
+			break;
 		case 3:
 			Map<String, ArrayList<ManualSlope>> msMap = community
 					.getCommuntiyManualSlope().getFeatureLevel();
 			for (String key : keylist) {
 				if (msMap.containsKey(key)) {
-					CommunityTreeNode<?> ctnode = new CommunityTreeNode<>(
-							getFeatureLevelString(key), msMap.get(key));
+					ArrayList<Factor> ary = new ArrayCast<>(msMap.get(key)).toFactorArray();
+					CommunityTreeNode ctnode = new CommunityTreeNode(getFeatureLevelString(key), ary);
 					treeNode.add(createDefaultTreeNode(ctnode));
 				}
 			}
-			return treeNode;
+			break;
 		case 4:
 			Map<String, ArrayList<NaturalSlope>> nsMap = community
 					.getCommuntiyNaturalSlope().getFeatureLevel();
 			for (String key : keylist) {
 				if (nsMap.containsKey(key)) {
-					CommunityTreeNode<?> ctnode = new CommunityTreeNode<>(
-							getFeatureLevelString(key), nsMap.get(key));
+					ArrayList<Factor> ary = new ArrayCast<>(nsMap.get(key)).toFactorArray();
+					CommunityTreeNode ctnode = new CommunityTreeNode(getFeatureLevelString(key), ary);
 					treeNode.add(createDefaultTreeNode(ctnode));
 				}
 			}
-			return treeNode;
+			break;
 		}
-		return null;
+		return treeNode;
 	}
 
 	private String getFeatureLevelString(String name) {
@@ -143,53 +144,46 @@ public class CommunityInfoTreeCtrl {
 		}
 	}
 
-	private DefaultTreeNode<CommunityTreeNode<?>> createFactorParent(int type) {
-		switch (type) {
-		case 9:
-			ArrayList<Boundary> list = new ArrayList<Boundary>();
-			list.add(this.community.getCommunityBoundary());
-			return new DefaultTreeNode<CommunityTreeNode<?>>(
-					new CommunityTreeNode<>("社區邊界", list));
-		default:
-			return null;
-		}
-	}
-
-	private DefaultTreeNode<CommunityTreeNode<?>> createFactorParent(int type,
-			List<DefaultTreeNode<CommunityTreeNode<?>>> child) {
+	private DefaultTreeNode<CommunityTreeNode> createFactorParent(int type,
+			List<DefaultTreeNode<CommunityTreeNode>> child) {
 		switch (type) {
 		case 5:
-			return new DefaultTreeNode<CommunityTreeNode<?>>(
-					new CommunityTreeNode<>("排水設施徵兆分級",
-							(ArrayList<Drain>) community.getCommuntiyDrains()
-									.getDrains()), child);
+			return new DefaultTreeNode<CommunityTreeNode>(
+					new CommunityTreeNode("排水設施徵兆分級",
+							community.getCommuntiyDrains()
+									.getFactor()), child);
 		case 6:
-			return new DefaultTreeNode<CommunityTreeNode<?>>(
-					new CommunityTreeNode<>("路面與建物徵兆分級",
-							(ArrayList<Building>) community
-									.getCommuntiyBuildings().getBuilds()),
+			return new DefaultTreeNode<CommunityTreeNode>(
+					new CommunityTreeNode("路面與建物徵兆分級",
+							community
+									.getCommuntiyBuildings().getFactor()),
 					child);
 
 		case 7:
-			return new DefaultTreeNode<CommunityTreeNode<?>>(
-					new CommunityTreeNode<>("人工邊坡徵兆分級",
-							(ArrayList<ManualSlope>) community
+			return new DefaultTreeNode<CommunityTreeNode>(
+					new CommunityTreeNode("人工邊坡徵兆分級",
+							community
 									.getCommuntiyManualSlope()
-									.getManualSlopes()), child);
+									.getFactor()), child);
 		case 8:
-			return new DefaultTreeNode<CommunityTreeNode<?>>(
-					new CommunityTreeNode<>("自然邊坡徵兆分級",
-							(ArrayList<NaturalSlope>) community
+			return new DefaultTreeNode<CommunityTreeNode>(
+					new CommunityTreeNode("自然邊坡徵兆分級",
+							community
 									.getCommuntiyNaturalSlope()
-									.getNaturalSlopes()), child);
+									.getFactor()), child);
+		case 9:
+			ArrayList<Factor> list = new ArrayList<>();
+			list.add(this.community.getCommunityBoundary());
+			return new DefaultTreeNode<CommunityTreeNode>(
+					new CommunityTreeNode("社區邊界", list));
 		default:
 			return null;
 		}
 	}
 
-	private DefaultTreeNode<CommunityTreeNode<?>> createDefaultTreeNode(
-			CommunityTreeNode<?> parent) {
-		DefaultTreeNode<CommunityTreeNode<?>> node = new DefaultTreeNode<CommunityTreeNode<?>>(
+	private DefaultTreeNode<CommunityTreeNode> createDefaultTreeNode(
+			CommunityTreeNode parent) {
+		DefaultTreeNode<CommunityTreeNode> node = new DefaultTreeNode<CommunityTreeNode>(
 				parent);
 		return node;
 	}

@@ -1,14 +1,25 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommuntiyDrains {
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.FactorUtil;
+
+public class CommuntiyDrains implements FactorUtil{
 	
 	//all Building in this Community.
 	private Collection<Drain> drains;
+	
+	public CommuntiyDrains(Collection<Drain> drains) {
+		super();
+		if(drains == null){
+			return;
+		}
+		this.drains = drains;
+	}
 	
 	/**
 	 * 取得每種分類
@@ -33,17 +44,25 @@ public class CommuntiyDrains {
 	public Collection<Drain> getDrains() {
 		return drains;
 	}
-
-	public void setBuilds(Collection<Drain> drains) {
+	
+	public void setBuilds(ArrayList<Drain> drains) {
 		this.drains = drains;
 	}
 
-	public CommuntiyDrains(Collection<Drain> drains) {
+	public CommuntiyDrains(ArrayList<Drain> drains) {
 		super();
 		if(drains == null){
 			return;
 		}
 		this.drains = drains;
 	}
-
+	
+	@Override
+	public ArrayList<Factor> getFactor() {
+		ArrayList<Factor> cast = new ArrayList<>();
+		for(Drain d : this.drains){
+			cast.add((Factor) d);
+		}
+		return cast;
+	}
 }

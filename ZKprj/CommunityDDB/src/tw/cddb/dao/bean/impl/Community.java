@@ -1,4 +1,4 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
 public class Community {
 

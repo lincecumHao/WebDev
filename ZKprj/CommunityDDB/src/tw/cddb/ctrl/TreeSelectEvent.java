@@ -11,17 +11,19 @@ import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 
-import tw.cddb.dao.bean.Boundary;
-import tw.cddb.dao.bean.Building;
-import tw.cddb.dao.bean.CommunityTreeNode;
-import tw.cddb.dao.bean.Drain;
-import tw.cddb.dao.bean.ManualSlope;
-import tw.cddb.dao.bean.NaturalSlope;
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.impl.Boundary;
+import tw.cddb.dao.bean.impl.Building;
+import tw.cddb.dao.bean.impl.CommunityTreeNode;
+import tw.cddb.dao.bean.impl.Drain;
+import tw.cddb.dao.bean.impl.ManualSlope;
+import tw.cddb.dao.bean.impl.NaturalSlope;
 
 public class TreeSelectEvent implements EventListener<Event> {
 
 	private ArrayList<Treeitem> originSelectedItems = new ArrayList<Treeitem>();
 	private Set<Treeitem> newSelectedItems = null;
+	private String communityId;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -30,7 +32,6 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 		// set the new select Set.
 		this.newSelectedItems = tree.getSelectedItems();
-		
 		if (newSelectedItems.size() >= this.originSelectedItems.size()) {
 
 			// must had a new select one.
@@ -43,45 +44,41 @@ public class TreeSelectEvent implements EventListener<Event> {
 		}
 
 		setOriginSelectItems(tree);
-
+		
+		/**
+		 * TODO 另外拿出去變成 Display ALL Select Item, 然後每次職行
+		 */
 		if (this.newSelectedItems.size() > 0) {
 			for (Treeitem item : this.newSelectedItems) {
-				if(isFactorParent(item)){
+				if (isFactorParent(item)) {
 					return;
 				}
-				CommunityTreeNode<Object> ct = (CommunityTreeNode<Object>) ((DefaultTreeNode<CommunityTreeNode<Object>>) item
+				CommunityTreeNode ct = ((DefaultTreeNode<CommunityTreeNode>) item
 						.getValue()).getData();
-				for(Object obj : ct.getChildren()){
-					if(obj instanceof Building){
+				for (Factor obj : ct.getChildren()) {
+					this.communityId = obj.getId();
+					if (obj instanceof Building) {
 						Building build = (Building) obj;
-						System.out.println(build.getGeom());
-					}else if(obj instanceof Drain){
+//						System.out.println(build.getGeom());
+					} else if (obj instanceof Drain) {
 						Drain drain = (Drain) obj;
-						System.out.println(drain.getGeom());
-					}else if(obj instanceof ManualSlope){
+//						System.out.println(drain.getGeom());
+					} else if (obj instanceof ManualSlope) {
 						ManualSlope ms = (ManualSlope) obj;
-						System.out.println(ms.getGeom());
-					}else if(obj instanceof NaturalSlope){
+//						System.out.println(ms.getGeom());
+					} else if (obj instanceof NaturalSlope) {
 						NaturalSlope ns = (NaturalSlope) obj;
-						System.out.println(ns.getGeom());
-					}else if(obj instanceof Boundary){
+//						System.out.println(ns.getGeom());
+					} else if (obj instanceof Boundary) {
 						Boundary bound = (Boundary) obj;
-						Clients.evalJavaScript("SYMBOL.push(new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\"));");
+						Clients.evalJavaScript("SYMBOL.push(new Polygon("
+								+ bound.getId() + ",\"" + bound.getGeom()
+								+ "\"));");
 					}
-					
 				}
+				Clients.evalJavaScript("panTo(" + this.communityId + ");");
 			}
 		}
-
-		// DefaultTreeNode<CommunityTreeNode<Object>> dtn =
-		// (DefaultTreeNode<CommunityTreeNode<Object>>)
-		// tree.getSelectedItem().getValue();
-		// CommunityTreeNode<Object> ct = dtn.getData();
-		// for(Object a : ct.getChildren()){
-		// System.out.println(a.getClass());
-		// System.out.println(a instanceof ManualSlope);
-		// }
-
 	}
 
 	private void renderRemoveSelect() {
@@ -105,9 +102,9 @@ public class TreeSelectEvent implements EventListener<Event> {
 	}
 
 	private void setOriginSelectItems(Tree tree) {
-		//reset originSelectItem;
+		// reset originSelectItem;
 		this.originSelectedItems = new ArrayList<Treeitem>();
-		
+
 		if (tree.getSelectedCount() <= 0) {
 			return;
 		}
@@ -123,9 +120,10 @@ public class TreeSelectEvent implements EventListener<Event> {
 			flag = true;
 		}
 
-		if(item.getLabel().indexOf("邊界") > 0){
+		if (item.getLabel().indexOf("邊界") > 0) {
 			flag = false;
 		}
+		System.out.println(flag);
 		return flag;
 	}
 

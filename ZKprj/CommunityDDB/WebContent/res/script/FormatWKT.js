@@ -15,7 +15,6 @@ FormatWKT.prototype.symbolToLatLng = function(symbolAry){
 	var latLngAry = [];
 	if(this.isMulti()){
 		for(var index = 0; index < symbolAry.length; index++){
-			console.log(symbolAry);
 			latLngAry.push(this.toLatLng(symbolAry[index][0]));
 		}
 	}else{

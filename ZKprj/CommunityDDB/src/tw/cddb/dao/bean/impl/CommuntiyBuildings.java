@@ -1,11 +1,14 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommuntiyBuildings {
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.FactorUtil;
+
+public class CommuntiyBuildings implements FactorUtil{
 	
 	//all Building in this Community.
 	private Collection<Building> builds;
@@ -32,6 +35,14 @@ public class CommuntiyBuildings {
 	
 	public Collection<Building> getBuilds() {
 		return builds;
+	}
+	
+	public ArrayList<Factor> getFactor() {
+		ArrayList<Factor> cast = new ArrayList<>();
+		for(Building b : this.builds){
+			cast.add((Factor) b);
+		}
+		return cast;
 	}
 
 	public void setBuilds(Collection<Building> builds) {

@@ -1,11 +1,14 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommuntiyNaturalSlope {
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.FactorUtil;
+
+public class CommuntiyNaturalSlope implements FactorUtil{
 	
 	//all Building in this Community.
 	private Collection<NaturalSlope> naturalSlopes;
@@ -44,6 +47,14 @@ public class CommuntiyNaturalSlope {
 			return;
 		}
 		this.naturalSlopes = naturalSlope;
+	}
+	
+	public ArrayList<Factor> getFactor() {
+		ArrayList<Factor> cast = new ArrayList<>();
+		for(NaturalSlope b : this.naturalSlopes){
+			cast.add((Factor) b);
+		}
+		return cast;
 	}
 
 }

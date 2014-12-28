@@ -1,11 +1,14 @@
-package tw.cddb.dao.bean;
+package tw.cddb.dao.bean.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommuntiyManualSlope {
+import tw.cddb.dao.bean.Factor;
+import tw.cddb.dao.bean.FactorUtil;
+
+public class CommuntiyManualSlope implements FactorUtil{
 	
 	//all Building in this Community.
 	private Collection<ManualSlope> manualSlopes;
@@ -44,6 +47,15 @@ public class CommuntiyManualSlope {
 			return;
 		}
 		this.manualSlopes = manualSlope;
+	}
+
+	@Override
+	public ArrayList<Factor> getFactor() {
+		ArrayList<Factor> cast = new ArrayList<>();
+		for(ManualSlope b : this.manualSlopes){
+			cast.add((Factor) b);
+		}
+		return cast;
 	}
 
 }

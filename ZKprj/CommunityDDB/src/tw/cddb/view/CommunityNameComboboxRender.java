@@ -3,7 +3,7 @@ package tw.cddb.view;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.ComboitemRenderer;
 
-import tw.cddb.dao.bean.Community;
+import tw.cddb.dao.bean.impl.Community;
 
 public class CommunityNameComboboxRender implements
 		ComboitemRenderer<Community> {

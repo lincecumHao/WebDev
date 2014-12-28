@@ -2,7 +2,7 @@ package tw.cddb.dao.method;
 
 import java.util.Collection;
 
-import tw.cddb.dao.bean.Building;
+import tw.cddb.dao.bean.impl.Building;
 
 public interface CommunityBuildingDAO {
 
