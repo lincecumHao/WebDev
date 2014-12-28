@@ -10,6 +10,7 @@ import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 
+import tw.cddb.dao.bean.Boundary;
 import tw.cddb.dao.bean.Building;
 import tw.cddb.dao.bean.CommunityTreeNode;
 import tw.cddb.dao.bean.Drain;
@@ -28,31 +29,26 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 		// set the new select Set.
 		this.newSelectedItems = tree.getSelectedItems();
+		System.out.println("before set ori: " + originSelectedItems.size());
+		System.out.println("before set new: " + newSelectedItems.size());
+		
 		if (newSelectedItems.size() >= this.originSelectedItems.size()) {
 
 			// must had a new select one.
-			for (Treeitem item : this.newSelectedItems) {
-				if (isNewSelectItem(item)) {
-					if (isFactorParent(item)) {
-						checkAllSubFactor(item);
-					}
-				}
-			}
+			renderNewSelect();
 
 		} else if (newSelectedItems.size() < this.originSelectedItems.size()) {
 
 			// must had a remove one;
-			for (Treeitem item : this.originSelectedItems) {
-				if (isRemovedItem(item)) {
-					if (isFactorParent(item)) {
-						uncheckAllSubFactor(item);
-					}
-				}
-			}
+			renderRemoveSelect();
 		}
 
 		setOriginSelectItems(tree);
 
+		System.out.println("after set ori: " + originSelectedItems.size());
+		System.out.println("after set new: " + newSelectedItems.size());
+		
+		
 		if (this.newSelectedItems.size() > 0) {
 			for (Treeitem item : this.newSelectedItems) {
 				if(isFactorParent(item)){
@@ -65,14 +61,17 @@ public class TreeSelectEvent implements EventListener<Event> {
 						Building build = (Building) obj;
 
 					}else if(obj instanceof Drain){
-						Drain build = (Drain) obj;
+						Drain drain = (Drain) obj;
 
 					}else if(obj instanceof ManualSlope){
-						ManualSlope build = (ManualSlope) obj;
+						ManualSlope ms = (ManualSlope) obj;
 
 					}else if(obj instanceof NaturalSlope){
-						NaturalSlope build = (NaturalSlope) obj;
+						NaturalSlope ns = (NaturalSlope) obj;
 
+					}else if(obj instanceof Boundary){
+						Boundary bound = (Boundary) obj;
+//						System.out.println(bound);
 					}
 					
 				}
@@ -90,9 +89,31 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 	}
 
+	private void renderRemoveSelect() {
+		for (Treeitem item : this.originSelectedItems) {
+			if (isRemovedItem(item)) {
+				if (isFactorParent(item)) {
+					uncheckAllSubFactor(item);
+				}
+			}
+		}
+	}
+
+	private void renderNewSelect() {
+		for (Treeitem item : this.newSelectedItems) {
+			if (isNewSelectItem(item)) {
+				if (isFactorParent(item)) {
+					checkAllSubFactor(item);
+				}
+			}
+		}
+	}
+
 	private void setOriginSelectItems(Tree tree) {
+		//reset originSelectItem;
+		this.originSelectedItems = new ArrayList<Treeitem>();
+		
 		if (tree.getSelectedCount() <= 0) {
-			this.originSelectedItems = new ArrayList<Treeitem>();
 			return;
 		}
 		for (Treeitem item : this.newSelectedItems) {
@@ -105,6 +126,10 @@ public class TreeSelectEvent implements EventListener<Event> {
 		if (item.getTreechildren() != null
 				&& item.getTreechildren().getItemCount() > 0) {
 			flag = true;
+		}
+
+		if(item.getLabel().indexOf("邊界") > 0){
+			flag = false;
 		}
 		return flag;
 	}
