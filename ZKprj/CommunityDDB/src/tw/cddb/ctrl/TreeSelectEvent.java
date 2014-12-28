@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treechildren;
@@ -29,8 +30,6 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 		// set the new select Set.
 		this.newSelectedItems = tree.getSelectedItems();
-		System.out.println("before set ori: " + originSelectedItems.size());
-		System.out.println("before set new: " + newSelectedItems.size());
 		
 		if (newSelectedItems.size() >= this.originSelectedItems.size()) {
 
@@ -45,10 +44,6 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 		setOriginSelectItems(tree);
 
-		System.out.println("after set ori: " + originSelectedItems.size());
-		System.out.println("after set new: " + newSelectedItems.size());
-		
-		
 		if (this.newSelectedItems.size() > 0) {
 			for (Treeitem item : this.newSelectedItems) {
 				if(isFactorParent(item)){
@@ -71,7 +66,8 @@ public class TreeSelectEvent implements EventListener<Event> {
 
 					}else if(obj instanceof Boundary){
 						Boundary bound = (Boundary) obj;
-//						System.out.println(bound);
+						System.out.println("new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\").setPath();");
+						Clients.evalJavaScript("new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\");");
 					}
 					
 				}

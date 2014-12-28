@@ -25,30 +25,31 @@ public class PostgreCommunityBoundaryDAO implements CommunityBoundaryDAO {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				resultList.add(new Boundary(rs.getInt("gid"), rs
-						.getInt("id"), rs.getString("name"), rs
-						.getString("wktGeom")));
+				resultList.add(new Boundary(rs.getInt("gid"), rs.getInt("id"),
+						rs.getString("name"), rs.getString("wktGeom")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return resultList;
 	}
-	
+
 	@Override
 	public Boundary getCommunityBoudnaryById(String id) {
 		Boundary boundary = null;
 		Connection con = PostgreDAOFactory.createConnection();
-		String sql = "SELECT *, ST_AsText(geom) as wktGeom FROM \"140_community_boundary\" ORDER BY id";
+		StringBuilder sb = new StringBuilder();
+		sb.append(
+				"SELECT *, ST_AsText(geom) as wktGeom FROM \"140_community_boundary\" ")
+				.append("WHERE id = ").append(id).append(";");
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sb.toString());
 			while (rs.next()) {
-				boundary = new Boundary(rs.getInt("gid"), rs
-						.getInt("id"), rs.getString("name"), rs
-						.getString("wktGeom"));
+				boundary = new Boundary(rs.getInt("gid"), rs.getInt("id"),
+						rs.getString("name"), rs.getString("wktGeom"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -102,7 +102,8 @@ public class CommunityInfoSet {
 		// get data from server.
 		Boundary boundary = cbDAO.getCommunityBoudnaryById(this.community
 				.getId());
-
+		System.out.println(boundary.getId());
+		
 		// set data to community.
 		community.setCommunityBoundary(boundary);
 
