@@ -54,20 +54,19 @@ public class TreeSelectEvent implements EventListener<Event> {
 				for(Object obj : ct.getChildren()){
 					if(obj instanceof Building){
 						Building build = (Building) obj;
-
+						System.out.println(build.getGeom());
 					}else if(obj instanceof Drain){
 						Drain drain = (Drain) obj;
-
+						System.out.println(drain.getGeom());
 					}else if(obj instanceof ManualSlope){
 						ManualSlope ms = (ManualSlope) obj;
-
+						System.out.println(ms.getGeom());
 					}else if(obj instanceof NaturalSlope){
 						NaturalSlope ns = (NaturalSlope) obj;
-
+						System.out.println(ns.getGeom());
 					}else if(obj instanceof Boundary){
 						Boundary bound = (Boundary) obj;
-						System.out.println("new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\").setPath();");
-						Clients.evalJavaScript("new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\");");
+						Clients.evalJavaScript("SYMBOL.push(new Polygon(" + bound.getId() + ",\"" + bound.getWktGeom() + "\"));");
 					}
 					
 				}

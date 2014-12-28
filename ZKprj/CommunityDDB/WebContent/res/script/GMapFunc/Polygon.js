@@ -1,28 +1,13 @@
 function Polygon(id, wkt) {
 
 	Polygon.prototype.id = id;
-
-	Polygon.prototype.initialize = function() {
-		if (wkt != null) {
-			return new google.maps.Polygon({
-				strokeColor : '#FF0000',
-				strokeOpacity : 0.8,
-				strokeWeight : 2,
-				fillColor : '#FF0000',
-				fillOpacity : 0.35,
-				map : MAP
-			});
-		} else {
-			return null;
-		}
-	};
 	
-	Polygon.prototype.setPath = function(){
-		var bounds = formatWKT(wkt);
+	Polygon.prototype.setPath = function(polygon){
+		var bounds = new FormatWKT(wkt).getLatLngArray();
 		if(bounds.length == 1){
-			this.symbol.setPath(bounds[0]);
+			polygon.setPath(bounds[0]);
 		}else{
-			this.symbol.setPaths(bounds);
+			polygon.setPaths(bounds);
 		}
 	};
 	
@@ -35,9 +20,24 @@ function Polygon(id, wkt) {
 		return bounds.getCenter();
 	};
 
-	Polygon.prototype.symbol = this.initialize();
+	Polygon.prototype.initialize = function() {
+		if (wkt != null) {
+			var polygon = new google.maps.Polygon({
+				strokeColor : '#FF0000',
+				strokeOpacity : 0.8,
+				strokeWeight : 2,
+				fillColor : '#FF0000',
+				fillOpacity : 0.35,
+				map : MAP
+			});
+			this.setPath(polygon);
+			return polygon;
+		} else {
+			return null;
+		}
+	};
 	
-	this.setPath();
+	Polygon.prototype.symbol = this.initialize();
 }
 
 Polygon.prototype = new Symbol();

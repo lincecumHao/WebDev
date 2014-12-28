@@ -3,9 +3,10 @@
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp" />
 	<script src="/res/script/initMap.js" />
 	<script src="/res/script/Utils.js" />
-	
+	<script src="/res/script/FormatWKT.js" />
 	<script src="/res/script/GMapFunc/Symbol.js" />
 	<script src="/res/script/GMapFunc/Polygon.js" />
+	<script src="/res/script/3rdParty/wicket.js" />
 	
 	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">
 		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl" autocomplete="true" autodrop="true">
