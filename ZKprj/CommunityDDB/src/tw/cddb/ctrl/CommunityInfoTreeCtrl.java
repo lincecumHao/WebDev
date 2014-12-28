@@ -9,6 +9,7 @@ import org.zkoss.zul.DefaultTreeModel;
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.Tree;
 
+import tw.cddb.dao.bean.Boundary;
 import tw.cddb.dao.bean.Building;
 import tw.cddb.dao.bean.Community;
 import tw.cddb.dao.bean.CommunityTreeNode;
@@ -32,11 +33,14 @@ public class CommunityInfoTreeCtrl {
 	private int MANUAL_SLOPE_PARENT = 7;
 	private int NATURAL_SLOPE_PARENT = 8;
 
+	private int BOUNDARY = 9;
+
 	public CommunityInfoTreeCtrl(Community community) {
 		this.community = community;
 		this.tree = getTree();
 
 		List<DefaultTreeNode<CommunityTreeNode<?>>> factorParentList = new ArrayList<>();
+		factorParentList.add(createFactorParent(this.BOUNDARY));
 		factorParentList.add(createFactorParent(this.DRAIN_PARENT,
 				getFactorNode(this.DRAIN)));
 		factorParentList.add(createFactorParent(this.BUILDIND_PARENT,
@@ -136,6 +140,18 @@ public class CommunityInfoTreeCtrl {
 			return "第二級";
 		} else {
 			return "第三級";
+		}
+	}
+
+	private DefaultTreeNode<CommunityTreeNode<?>> createFactorParent(int type) {
+		switch (type) {
+		case 9:
+			ArrayList<Boundary> list = new ArrayList<Boundary>();
+			list.add(this.community.getCommunityBoundary());
+			return new DefaultTreeNode<CommunityTreeNode<?>>(
+					new CommunityTreeNode<>("社區邊界", list));
+		default:
+			return null;
 		}
 	}
 

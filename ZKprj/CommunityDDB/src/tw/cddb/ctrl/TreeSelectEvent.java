@@ -10,7 +10,11 @@ import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treechildren;
 import org.zkoss.zul.Treeitem;
 
+import tw.cddb.dao.bean.Building;
 import tw.cddb.dao.bean.CommunityTreeNode;
+import tw.cddb.dao.bean.Drain;
+import tw.cddb.dao.bean.ManualSlope;
+import tw.cddb.dao.bean.NaturalSlope;
 
 public class TreeSelectEvent implements EventListener<Event> {
 
@@ -57,7 +61,19 @@ public class TreeSelectEvent implements EventListener<Event> {
 				CommunityTreeNode<Object> ct = (CommunityTreeNode<Object>) ((DefaultTreeNode<CommunityTreeNode<Object>>) item
 						.getValue()).getData();
 				for(Object obj : ct.getChildren()){
-					if( obj instanceof )
+					if(obj instanceof Building){
+						Building build = (Building) obj;
+
+					}else if(obj instanceof Drain){
+						Drain build = (Drain) obj;
+
+					}else if(obj instanceof ManualSlope){
+						ManualSlope build = (ManualSlope) obj;
+
+					}else if(obj instanceof NaturalSlope){
+						NaturalSlope build = (NaturalSlope) obj;
+
+					}
 					
 				}
 			}

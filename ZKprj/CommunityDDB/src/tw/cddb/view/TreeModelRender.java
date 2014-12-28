@@ -21,7 +21,10 @@ public class TreeModelRender implements
 		item.setId(UUID.randomUUID().toString());
 		item.setOpen(true);
 		item.setValue(data);
-
+		int childCount = 0;
+		if(ctn.getChildren() != null){
+			childCount = ctn.getChildren().size();
+		}
 		// for update treeNode data
 		Treerow tr = item.getTreerow();
 		if (tr == null) {
@@ -33,7 +36,12 @@ public class TreeModelRender implements
 
 		// render file path cell
 		Treecell pathCell = new Treecell();
-		pathCell.setLabel(ctn.getName());
+		if(childCount == 0){
+			pathCell.setLabel(ctn.getName());
+			
+		}else{
+			pathCell.setLabel(ctn.getName() + " (" + childCount + ")");
+		}
 		pathCell.setParent(tr);
 	}
 }

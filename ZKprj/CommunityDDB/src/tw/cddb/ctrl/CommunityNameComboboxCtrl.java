@@ -25,26 +25,6 @@ public class CommunityNameComboboxCtrl extends SelectorComposer<Component> {
 	@Wire
 	Combobox communityName_cbbox;
 
-//	@Override
-//	public void doAfterCompose(Component comp) throws Exception {
-//		super.doAfterCompose(comp);
-//
-//		// create the required DAO Factory
-//		DAOFactory postgreDAO = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
-//
-//		// Create a DAO
-//		CommunityBoundaryDAO cbDAO = postgreDAO.getCommunityBoundDAO();
-//
-//		//get data from server.
-//		Collection<CommunityBoundary> list = cbDAO.getAllCommunityBoudnary();
-//
-//		// get data from service and wrap it to list-model for the view
-//		ListModelList<CommunityBoundary> todoListModel = new ListModelList<CommunityBoundary>(list);
-//		communityName_cbbox.setModel(todoListModel);
-//		communityName_cbbox.setItemRenderer(new CommunityNameComboboxRender());
-//		communityName_cbbox.addEventListener("onSelect", new CommunityNameComboboxOnSelectEvent());
-//	}
-	
 	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);

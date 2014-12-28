@@ -1,19 +1,21 @@
 package tw.cddb.dao.bean;
 
-
 public class Community {
-	
+
 	private int id;
 	private String name;
+	private Boundary communityBoundary;
 	private CommuntiyBuildings communtiyBuildings;
 	private CommuntiyDrains communtiyDrains;
 	private CommuntiyManualSlope communtiyManualSlope;
 	private CommuntiyNaturalSlope communtiyNaturalSlope;
+
 	public CommuntiyManualSlope getCommuntiyManualSlope() {
 		return communtiyManualSlope;
 	}
 
-	public void setCommuntiyManualSlope(CommuntiyManualSlope communtiyManualSlope) {
+	public void setCommuntiyManualSlope(
+			CommuntiyManualSlope communtiyManualSlope) {
 		this.communtiyManualSlope = communtiyManualSlope;
 	}
 
@@ -21,11 +23,11 @@ public class Community {
 		return communtiyNaturalSlope;
 	}
 
-	public void setCommuntiyNaturalSlope(CommuntiyNaturalSlope communtiyNaturalSlope) {
+	public void setCommuntiyNaturalSlope(
+			CommuntiyNaturalSlope communtiyNaturalSlope) {
 		this.communtiyNaturalSlope = communtiyNaturalSlope;
 	}
 
-	private Boundary communityBoundary;
 	
 	public CommuntiyBuildings getCommuntiyBuildings() {
 		return communtiyBuildings;
@@ -66,10 +68,11 @@ public class Community {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Community(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+
 }
