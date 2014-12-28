@@ -1,5 +1,7 @@
 package tw.cddb.view;
 
+import java.util.UUID;
+
 import org.zkoss.zul.DefaultTreeNode;
 import org.zkoss.zul.Treecell;
 import org.zkoss.zul.Treeitem;
@@ -16,7 +18,9 @@ public class TreeModelRender implements
 			DefaultTreeNode<CommunityTreeNode<Object>> data, int index)
 			throws Exception {
 		final CommunityTreeNode<Object> ctn = data.getData();
+		item.setId(UUID.randomUUID().toString());
 		item.setOpen(true);
+		item.setValue(data);
 
 		// for update treeNode data
 		Treerow tr = item.getTreerow();
@@ -31,6 +35,5 @@ public class TreeModelRender implements
 		Treecell pathCell = new Treecell();
 		pathCell.setLabel(ctn.getName());
 		pathCell.setParent(tr);
-
 	}
 }
