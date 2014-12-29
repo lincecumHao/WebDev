@@ -52,6 +52,7 @@ public class NaturalSlope extends Factor {
 		this.note = note;
 		this.nsIdFull = nsIdFull;
 		setGeom(geom);
+		setName("NaturalSlope");
 	}
 
 	public int getGid() {
@@ -185,6 +186,7 @@ public class NaturalSlope extends Factor {
 	public String toJSONString(){
 		Map<String, String> map = new HashMap<>();
 		map.put("id", getId());
+		map.put("name", getName());
 		map.put("featureLevel", getFeatureLevel());
 		map.put("geom", getGeom());
 		return JSONObject.toJSONString(map);

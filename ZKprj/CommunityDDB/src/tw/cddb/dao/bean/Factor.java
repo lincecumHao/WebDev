@@ -1,12 +1,25 @@
 package tw.cddb.dao.bean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.zkoss.json.JSONAware;
+import org.zkoss.json.JSONObject;
 
 public class Factor implements JSONAware{
 	
 	private int id;
 	private String wktGeom;
 	private String featureLevel;
+	public String name;
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
 
 	public String getId() {
 		return String.valueOf(id);
@@ -33,5 +46,12 @@ public class Factor implements JSONAware{
 	}
 
 	@Override
-	public String toJSONString(){return null;};
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("name", getName());
+		map.put("featureLevel", getFeatureLevel());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
+	}
 }

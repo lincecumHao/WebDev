@@ -7,6 +7,7 @@
 	<script src="/res/script/GMapFunc/Symbol.js" />
 	<script src="/res/script/GMapFunc/Polygon.js" />
 	<script src="/res/script/GMapFunc/Point.js" />
+	<script src="/res/script/GMapFunc/Polyline.js" />
 	<script src="/res/script/3rdParty/wicket.js" />
 	
 	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">

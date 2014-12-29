@@ -1,9 +1,10 @@
-function Polygon(id, wkt) {
+function Polygon(json) {
 
-	Polygon.prototype.id = id;
+	Polygon.prototype.json = json;
+	Polygon.prototype.id = this.json.id;
 	
 	Polygon.prototype.setPath = function(polygon){
-		var bounds = new FormatWKT(wkt).getLatLngArray();
+		var bounds = new FormatWKT(this.json.geom).getLatLngArray();
 		if(bounds.length == 1){
 			polygon.setPath(bounds[0]);
 		}else{
@@ -21,7 +22,7 @@ function Polygon(id, wkt) {
 	};
 
 	Polygon.prototype.initialize = function() {
-		if (wkt != null) {
+		if (this.json.geom != null) {
 			var polygon = new google.maps.Polygon({
 				strokeColor : '#FF0000',
 				strokeOpacity : 1,

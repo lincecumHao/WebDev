@@ -1,9 +1,13 @@
-//save all symbol on the map;
-var SYMBOL = [];
 
 function panTo(id){
-	MAP.setCenter(findSymbolById(id).getCenter());
-	MAP.setZoom(18);
+	
+	if(findSymbolById(id) != undefined || findSymbolById(id) != null){
+		console.log('qq1');
+		MAP.setCenter(findSymbolById(id).getCenter());
+		console.log('qq');
+		MAP.setZoom(18);
+	}
+	
 }
 
 function findSymbolById(id){

@@ -3,6 +3,7 @@ package tw.cddb.ctrl;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.zkoss.json.JSONArray;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.util.Clients;
@@ -48,6 +49,7 @@ public class TreeSelectEvent implements EventListener<Event> {
 		/**
 		 * TODO 另外拿出去變成 Display ALL Select Item, 然後每次職行
 		 */
+		JSONArray jsonarray = new JSONArray();
 		if (this.newSelectedItems.size() > 0) {
 			Clients.evalJavaScript("removeAll();");
 			for (Treeitem item : this.newSelectedItems) {
@@ -58,30 +60,27 @@ public class TreeSelectEvent implements EventListener<Event> {
 						.getValue()).getData();
 				for (Factor obj : ct.getChildren()) {
 					this.communityId = obj.getId();
+					
 					if (obj instanceof Building) {
 						Building build = (Building) obj;
-						Clients.evalJavaScript("SYMBOL.push(new Point("
-								+ build.getId() + ",\"" + build.getGeom()
-								+ "\"));");
-						// System.out.println(build.getGeom());
+						jsonarray.add(build);
 					} else if (obj instanceof Drain) {
 						Drain drain = (Drain) obj;
-						// System.out.println(drain.getGeom());
+						jsonarray.add(drain);
 					} else if (obj instanceof ManualSlope) {
 						ManualSlope ms = (ManualSlope) obj;
-						// System.out.println(ms.getGeom());
+						jsonarray.add(ms);
 					} else if (obj instanceof NaturalSlope) {
 						NaturalSlope ns = (NaturalSlope) obj;
-						// System.out.println(ns.getGeom());
+						jsonarray.add(ns);
 					} else if (obj instanceof Boundary) {
 						Boundary bound = (Boundary) obj;
-						Clients.evalJavaScript("SYMBOL.push(new Polygon("
-								+ bound.getId() + ",\"" + bound.getGeom()
-								+ "\"));");
+						jsonarray.add(bound);
 					}
 				}
-				Clients.evalJavaScript("panTo(" + this.communityId + ");");
 			}
+			Clients.evalJavaScript("new CreateSymbol(" + jsonarray.toJSONString() + ");");
+			Clients.evalJavaScript("panTo(" + this.communityId + ");");
 		}
 	}
 

@@ -242,11 +242,13 @@ public class ManualSlope extends Factor {
 		this.earthAnchorNote = earthAnchorNote;
 		this.mmsIdFull = mmsIdFull;
 		setGeom(geom);
+		setName("ManualSlope");
 	}
 	
 	public String toJSONString(){
 		Map<String, String> map = new HashMap<>();
 		map.put("id", getId());
+		map.put("name", getName());
 		map.put("featureLevel", getFeatureLevel());
 		map.put("geom", getGeom());
 		return JSONObject.toJSONString(map);

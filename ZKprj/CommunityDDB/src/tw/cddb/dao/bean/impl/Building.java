@@ -59,6 +59,7 @@ public class Building extends Factor{
 		this.note = note;
 		this.bidFull = bidFull;
 		setGeom(geom);
+		setName("Building");
 	}
 
 	public int getGid() {
@@ -216,6 +217,7 @@ public class Building extends Factor{
 	public String toJSONString(){
 		Map<String, String> map = new HashMap<>();
 		map.put("id", getId());
+		map.put("name", getName());
 		map.put("featureLevel", getFeatureLevel());
 		map.put("geom", getGeom());
 		return JSONObject.toJSONString(map);

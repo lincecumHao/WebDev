@@ -49,6 +49,7 @@ public class Drain extends Factor{
 		this.note = note;
 		this.drIdFull = drIdFull;
 		setGeom(geom);
+		setName("Drain");
 	}
 
 	public int getGid() {
@@ -174,6 +175,7 @@ public class Drain extends Factor{
 	public String toJSONString(){
 		Map<String, String> map = new HashMap<>();
 		map.put("id", getId());
+		map.put("name", getName());
 		map.put("featureLevel", getFeatureLevel());
 		map.put("geom", getGeom());
 		return JSONObject.toJSONString(map);
