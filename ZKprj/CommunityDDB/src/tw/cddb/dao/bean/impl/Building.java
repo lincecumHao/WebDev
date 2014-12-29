@@ -1,5 +1,10 @@
 package tw.cddb.dao.bean.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.zkoss.json.JSONObject;
+
 import tw.cddb.dao.bean.Factor;
 
 public class Building extends Factor{
@@ -21,7 +26,6 @@ public class Building extends Factor{
 	private String buildingDandwFeature;
 	private String beamsCrack;
 	private String differentalSettlement;
-	private String featureLevel;
 	private String note;
 	private String bidFull;
 	
@@ -51,7 +55,7 @@ public class Building extends Factor{
 		this.buildingDandwFeature = buildingDandwFeature;
 		this.beamsCrack = beamsCrack;
 		this.differentalSettlement = differentalSettlement;
-		this.featureLevel = featureLevel;
+		setFeatureLevel(featureLevel);
 		this.note = note;
 		this.bidFull = bidFull;
 		setGeom(geom);
@@ -193,14 +197,6 @@ public class Building extends Factor{
 		this.differentalSettlement = differentalSettlement;
 	}
 
-	public String getFeatureLevel() {
-		return featureLevel;
-	}
-
-	public void setFeatureLevel(String featureLevel) {
-		this.featureLevel = featureLevel;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -215,6 +211,14 @@ public class Building extends Factor{
 
 	public void setBidFull(String bidFull) {
 		this.bidFull = bidFull;
+	}
+	
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("featureLevel", getFeatureLevel());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
 	}
 
 }

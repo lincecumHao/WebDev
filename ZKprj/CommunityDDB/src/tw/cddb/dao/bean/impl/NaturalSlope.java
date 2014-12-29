@@ -1,5 +1,10 @@
 package tw.cddb.dao.bean.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.zkoss.json.JSONObject;
+
 import tw.cddb.dao.bean.Factor;
 
 public class NaturalSlope extends Factor {
@@ -18,7 +23,6 @@ public class NaturalSlope extends Factor {
 	private String deltaH;
 	private String directRunoff;
 	private String newDisaster;
-	private String featureLevel;
 	private String note;
 	private String nsIdFull;
 
@@ -44,7 +48,7 @@ public class NaturalSlope extends Factor {
 		this.deltaH = deltaH;
 		this.directRunoff = directRunoff;
 		this.newDisaster = newDisaster;
-		this.featureLevel = featureLevel;
+		setFeatureLevel(featureLevel);
 		this.note = note;
 		this.nsIdFull = nsIdFull;
 		setGeom(geom);
@@ -162,14 +166,6 @@ public class NaturalSlope extends Factor {
 		this.newDisaster = newDisaster;
 	}
 
-	public String getFeatureLevel() {
-		return featureLevel;
-	}
-
-	public void setFeatureLevel(String featureLevel) {
-		this.featureLevel = featureLevel;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -185,5 +181,14 @@ public class NaturalSlope extends Factor {
 	public void setNsIdFull(String nsIdFull) {
 		this.nsIdFull = nsIdFull;
 	}
+	
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("featureLevel", getFeatureLevel());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
+	}
+
 
 }

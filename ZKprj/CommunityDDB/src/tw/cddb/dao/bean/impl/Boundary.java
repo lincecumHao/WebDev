@@ -1,5 +1,10 @@
 package tw.cddb.dao.bean.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.zkoss.json.JSONObject;
+
 import tw.cddb.dao.bean.Factor;
 
 public class Boundary extends Factor{
@@ -29,6 +34,14 @@ public class Boundary extends Factor{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("name", getName());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
 	}
 
 }

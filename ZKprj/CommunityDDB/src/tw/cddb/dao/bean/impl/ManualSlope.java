@@ -1,5 +1,10 @@
 package tw.cddb.dao.bean.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.zkoss.json.JSONObject;
+
 import tw.cddb.dao.bean.Factor;
 
 public class ManualSlope extends Factor {
@@ -23,7 +28,6 @@ public class ManualSlope extends Factor {
 	private String footScourAndCavern;
 	private String faceCrack;
 	private String materialCollapse;
-	private String featureLevel;
 	private String note;
 	private String earthAnchorNote;
 	private String mmsIdFull;
@@ -180,14 +184,6 @@ public class ManualSlope extends Factor {
 		this.materialCollapse = materialCollapse;
 	}
 
-	public String getFeatureLevel() {
-		return featureLevel;
-	}
-
-	public void setFeatureLevel(String featureLevel) {
-		this.featureLevel = featureLevel;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -241,11 +237,20 @@ public class ManualSlope extends Factor {
 		this.footScourAndCavern = footScourAndCavern;
 		this.faceCrack = faceCrack;
 		this.materialCollapse = materialCollapse;
-		this.featureLevel = featureLevel;
+		setFeatureLevel(featureLevel);
 		this.note = note;
 		this.earthAnchorNote = earthAnchorNote;
 		this.mmsIdFull = mmsIdFull;
 		setGeom(geom);
 	}
+	
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("featureLevel", getFeatureLevel());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
+	}
+
 
 }

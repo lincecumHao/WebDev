@@ -1,5 +1,10 @@
 package tw.cddb.dao.bean.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.zkoss.json.JSONObject;
+
 import tw.cddb.dao.bean.Factor;
 
 public class Drain extends Factor{
@@ -17,7 +22,6 @@ public class Drain extends Factor{
 	private String drCrack;
 	private String drEndDischarge;
 	private String sedWeirAndDetentionpond;
-	private String featureLevel;
 	private String note;
 	private String drIdFull;
 
@@ -25,7 +29,7 @@ public class Drain extends Factor{
 			double twd97_y, String pasaNum, String drId, String drType,
 			String drMaterial, String drStoppage, String drCrack,
 			String drEndDischarge, String sedWeirAndDetentionpond,
-			String featrueLevel, String note, String drIdFull, String geom) {
+			String featureLevel, String note, String drIdFull, String geom) {
 		super();
 		this.gid = gid;
 		setId(id);
@@ -41,7 +45,7 @@ public class Drain extends Factor{
 		this.drCrack = drCrack;
 		this.drEndDischarge = drEndDischarge;
 		this.sedWeirAndDetentionpond = sedWeirAndDetentionpond;
-		this.featureLevel = featrueLevel;
+		setFeatureLevel(featureLevel);
 		this.note = note;
 		this.drIdFull = drIdFull;
 		setGeom(geom);
@@ -151,14 +155,6 @@ public class Drain extends Factor{
 		this.sedWeirAndDetentionpond = sedWeirAndDetentionpond;
 	}
 
-	public String getFeatureLevel() {
-		return featureLevel;
-	}
-
-	public void setFeatureLevel(String featureLevel) {
-		this.featureLevel = featureLevel;
-	}
-
 	public String getNote() {
 		return note;
 	}
@@ -173,6 +169,14 @@ public class Drain extends Factor{
 
 	public void setDrIdFull(String drIdFull) {
 		this.drIdFull = drIdFull;
+	}
+	
+	public String toJSONString(){
+		Map<String, String> map = new HashMap<>();
+		map.put("id", getId());
+		map.put("featureLevel", getFeatureLevel());
+		map.put("geom", getGeom());
+		return JSONObject.toJSONString(map);
 	}
 
 }
