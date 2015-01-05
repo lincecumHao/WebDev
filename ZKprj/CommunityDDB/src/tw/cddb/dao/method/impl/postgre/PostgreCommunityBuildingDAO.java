@@ -1,4 +1,4 @@
-package tw.cddb.dao.method.impl;
+package tw.cddb.dao.method.impl.postgre;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
