@@ -45,16 +45,16 @@ public class TreeSelectEvent implements EventListener<Event> {
 		}
 
 		setOriginSelectItems(tree);
-
+		
 		/**
 		 * TODO 另外拿出去變成 Display ALL Select Item, 然後每次職行
 		 */
 		JSONArray jsonarray = new JSONArray();
 		if (this.newSelectedItems.size() > 0) {
 			Clients.evalJavaScript("removeAll();");
-			for (Treeitem item : this.newSelectedItems) {
+			for (Treeitem item : tree.getSelectedItems()) {
 				if (isFactorParent(item)) {
-					return;
+					continue;
 				}
 				CommunityTreeNode ct = ((DefaultTreeNode<CommunityTreeNode>) item
 						.getValue()).getData();
@@ -81,6 +81,9 @@ public class TreeSelectEvent implements EventListener<Event> {
 			}
 			Clients.evalJavaScript("new CreateSymbol(" + jsonarray.toJSONString() + ");");
 			Clients.evalJavaScript("panTo(" + this.communityId + ");");
+		}else{
+			Clients.evalJavaScript("removeAll();");
+			
 		}
 	}
 

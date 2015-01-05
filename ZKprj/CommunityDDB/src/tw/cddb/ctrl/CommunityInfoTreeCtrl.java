@@ -66,7 +66,7 @@ public class CommunityInfoTreeCtrl {
 
 		tree.setModel(model);
 		tree.setItemRenderer(new TreeModelRender());
-		tree.addEventListener("onClick", new TreeSelectEvent());
+		tree.addEventListener("onSelect", new TreeSelectEvent());
 		
 		if (!tree.isVisible()) {
 			tree.setVisible(true);

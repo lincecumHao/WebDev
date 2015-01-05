@@ -1,50 +1,28 @@
-<?page title="新北市社區災害資料庫"?>
+<?page title="新北市社區災害資料庫" ?>
+<?init class="tw.cddb.ctrl.WorkbenchInit" ?>
 <zk>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp" />
 	<script src="/res/script/initMap.js" />
+	<script src="/res/script/Utils.js" />
+	<script src="/res/script/FormatWKT.js" />
+	<script src="/res/script/GMapFunc/Symbol.js" />
+	<script src="/res/script/GMapFunc/Polygon.js" />
+	<script src="/res/script/GMapFunc/Point.js" />
+	<script src="/res/script/GMapFunc/Polyline.js" />
+	<script src="/res/script/3rdParty/wicket.js" />
+	
+	<window mode="overlapped" position="left,top" width="505px" id="overlap_Window">
+		<combobox width="500px" id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl" autocomplete="true" autodrop="true">
+		</combobox>
+		<tree width="500px" id="communityInfo_Tree" visible="false" checkmark="true" multiple="true">
+			<treecols>
+				<treecol label="詳細資訊" />
+			</treecols>
+		</tree>
+	</window>
 	<borderlayout>
-		<north size="20%">
-			<label style="font-size:45">新北市社區災害資料庫</label>
-		</north>
-		<west size="30%">
-			<vbox>
-				<label>請輸入社區名稱:</label>
-				<combobox id="communityName_cbbox" apply="tw.cddb.ctrl.CommunityNameComboboxCtrl">
-					<comboitem>社區1</comboitem>
-					<comboitem>社區2</comboitem>
-					<comboitem>社區3</comboitem>
-				</combobox>
-				<tree width="100%" multiple="true" checkmark="true">
-					<treecols>
-						<treecol label="詳細資訊" />
-					</treecols>
-					<treechildren>
-						<treeitem>
-							<treerow>
-								<treecell label="社區1" />
-							</treerow>
-							<treechildren>
-								<treeitem>
-									<treerow>
-										<treecell label="邊界" />
-									</treerow>
-								</treeitem>
-								<treeitem>
-									<treerow>
-										<treecell label="排水" />
-									</treerow>
-								</treeitem>
-							</treechildren>
-						</treeitem>
-					</treechildren>
-				</tree>
-			</vbox>
-		</west>
 		<center>
 			<div id="map_canvas" style="width:100%; height:100%"></div>
 		</center>
-		<south size="10%">
-			<label style="font-size:20">power by sinotech</label>
-		</south>
 	</borderlayout>
 </zk>

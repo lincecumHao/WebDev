@@ -162,7 +162,7 @@ function Polyline(json) {
 		(this.json.featureLevel != null ? this.setIconByLevel() : "");
 	};
 
-	this.symbol = this.initialize();
+	Polyline.prototype.symbol = this.initialize();
 	this.setupSymbol();
 }
 

@@ -1,0 +1,18 @@
+<?page title="社區防災資料庫 - Login"?>
+<window id="loginWin" border="normal" width="350px" title="社區防災資料庫身分驗證" position="center"
+	apply="tw.cddb.ctrl.LoginViewCtrl" sclass="panel-primary">
+	<grid>
+		<rows>
+			<row> Name: <textbox id="nameTxb"/></row>
+			<row> Password:<textbox id="passwordTxb"  type="password"/></row>
+		</rows>
+	</grid>
+	<hlayout>
+		<button id="confirmBtn" sclass="btn-success" label="登入" />
+		<space />
+		<button id="guestBtn" sclass="btn-info" label="無帳號登入"/>
+	</hlayout>
+	<div>
+		<label id="mesgLb"/>
+	</div>
+</window>

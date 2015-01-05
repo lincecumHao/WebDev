@@ -6,6 +6,7 @@ import tw.cddb.dao.method.CommunityDAO;
 import tw.cddb.dao.method.CommunityDrainDAO;
 import tw.cddb.dao.method.CommunityManualSlopeDAO;
 import tw.cddb.dao.method.CommunityNaturalSlopeDAO;
+import tw.cddb.dao.method.UserDAO;
 import tw.cddb.dao.model.impl.PostgreDAOFactory;
 
 public abstract class DAOFactory {
@@ -22,6 +23,7 @@ public abstract class DAOFactory {
 	public abstract CommunityManualSlopeDAO getCommunityManualSlopeDAO();
 	public abstract CommunityNaturalSlopeDAO getCommunityNaturalSlopeDAO();
 	public abstract CommunityDAO getCommunityDAO();
+	public abstract UserDAO getUserDAO();
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
 

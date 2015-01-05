@@ -115,7 +115,7 @@ function Point(json) {
 		(this.json.featureLevel != null ? this.setIconByLevel() : "");
 	};
 
-	Point.prototype.symbol = this.initialize();
+	this.symbol = this.initialize();
 	this.setupSymbol();
 }
 

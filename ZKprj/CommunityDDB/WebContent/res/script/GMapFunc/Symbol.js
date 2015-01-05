@@ -11,7 +11,7 @@ function Symbol() {
 
 	this.initialize = function() {};
 
-	this.symbol = this.initialize();
+//	this.symbol = this.initialize();
 }
 
 function CreateSymbol(json){
@@ -30,6 +30,7 @@ CreateSymbol.prototype.parse = function(){
 			SYMBOL.push(new Point(arg));
 		}else if(geom.indexOf("LINE") > -1){
 			SYMBOL.push(new Polyline(arg));
+			console.log(SYMBOL);
 		}
 	}
 };
