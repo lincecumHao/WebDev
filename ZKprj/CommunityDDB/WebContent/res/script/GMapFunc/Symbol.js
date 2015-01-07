@@ -30,7 +30,6 @@ CreateSymbol.prototype.parse = function(){
 			SYMBOL.push(new Point(arg));
 		}else if(geom.indexOf("LINE") > -1){
 			SYMBOL.push(new Polyline(arg));
-			console.log(SYMBOL);
 		}
 	}
 };
